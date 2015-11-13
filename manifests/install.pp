@@ -9,7 +9,7 @@ define wix::install($url, $version, $tempFolder = 'C:/temp') {
   }
 
   exec { "${tempFolder}/wix${version}.exe":
-    command  => "Invoke-WebRequest '${url}' -OutFile '${tempFolder}/wix${version}.exe'",
+    command  => "\$ProgressPreference='SilentlyContinue'; Invoke-WebRequest '${url}' -OutFile '${tempFolder}/wix${version}.exe'",
     provider => powershell,
     creates  => "${tempFolder}/wix${version}.exe",
     require  => File[$tempFolder],
